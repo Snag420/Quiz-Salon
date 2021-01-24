@@ -1,0 +1,41 @@
+Public Class frmStylish
+    Private Sub btnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnSave.Click
+        SimpanStylish()
+        GetData()
+    End Sub
+
+    Private Sub btnClear_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnClear.Click
+        ClearEntry()
+    End Sub
+
+    Private Sub btnRefresh_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnRefresh.Click
+        GetData()
+    End Sub
+
+    Private Sub txtkodeStylish_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles txtKodeStylish.KeyDown
+        If (e.KeyCode = Keys.Enter And txtKodeStylish.Text <> "") Then
+            oLayanan.CariLayanan(txtKodeStylish.Text)
+            txtNamaStylish.Text = oStylish.Nama_Stylish
+            txtStatusStylish.Text = oStylish.Status_Stylish
+        End If
+    End Sub
+    Private Sub ClearEntry()
+        txtKodeStylish.Clear()
+        txtNamaStylish.Clear()
+        txtStatusStylish.Clear()
+    End Sub
+    Private Sub TampilData()
+        txtKodeStylish.Text = oStylish.Kode_Stylish
+        txtNamaStylish.Text = oStylish.Nama_Stylish
+        txtStatusStylish.Text = oStylish.Status_Stylish
+    End Sub
+    Private Sub SimpanStylish()
+        Stylish_baru = True
+        oStylish.Kode_Stylish = txtKodeStylish.Text
+        oStylish.Nama_Stylish = txtNamaStylish.Text
+        oStylish.Status_Stylish = txtStatusStylish.Text
+    End Sub
+    Private Sub GetData()
+        oStylish.getAllData(DataGridView1)
+    End Sub
+End Class
